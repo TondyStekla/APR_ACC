@@ -1,0 +1,35 @@
+/*projection;
+strict ( 2 );
+//use draft;
+
+define behavior for ZC_ApproveAccrualTP alias PeriodicAccrual
+//use etag
+{
+  //use create;
+  use update;
+  //use delete;
+
+  use action ApprovePeriodicAccrual;
+  use action RejectPeriodicAccrual;
+}*/
+
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_ApproveAccrualTP alias PeriodicAccrual
+use etag
+{
+  //use create;
+  use update;
+  //use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+  use action Resume;
+
+  use action ApprovePeriodicAccrual;
+  use action RejectPeriodicAccrual;
+}

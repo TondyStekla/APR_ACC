@@ -1,0 +1,485 @@
+@Metadata.layer: #CORE
+@UI: { 
+  headerInfo: { 
+    typeName: 'Periodic Accrual',
+    typeNamePlural: 'Periodic Accruals',
+    description: { type: #STANDARD, value: 'AccrualObject' }
+  }
+}
+annotate view ZC_ApproveAccrualTP with
+{
+  @UI.facet: [ {
+    label: 'General Information',
+    id: 'GeneralInfo',
+    purpose: #STANDARD,
+    position: 10 ,
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+
+  @UI.identification: [ {
+    position: 1
+  } ]
+  @UI.lineItem: [ {
+    position: 1,
+    value: 'AccrualIsReady',
+    criticality: 'AccrualIsReadyCritlty',
+    criticalityRepresentation: #ONLY_ICON
+  } ]
+  AccrualIsReady;
+
+  @UI.identification: [ {
+    position: 10
+  } ]
+  @UI.selectionField: [ {
+    position: 10
+  } ]
+  @Consumption.filter.mandatory: true
+  @Consumption.filter.selectionType: #SINGLE
+  AccrualPeriodEndDate;
+
+  @UI.identification: [ {
+    position: 20
+  } ]
+  AccrualObjectLogicalSystem;
+
+  @UI.identification: [ { position: 30 },
+    { type: #FOR_ACTION, dataAction: 'ApprovePeriodicAccrual', label: 'Approve' },
+    { type: #FOR_ACTION, dataAction: 'RejectPeriodicAccrual', label: 'Reject' } ]
+  @UI.lineItem: [ { position: 10 },
+    { type: #FOR_ACTION, dataAction: 'ApprovePeriodicAccrual', label: 'Approve' },
+    { type: #FOR_ACTION, dataAction: 'RejectPeriodicAccrual', label: 'Reject' } ]
+  @UI.selectionField: [ {
+    position: 20
+  } ]
+  @Consumption.valueHelpDefinition: [
+    { entity: {
+      name:    'I_CompanyCodeStdVH',
+      element: 'CompanyCode' }
+    }
+  ]
+  CompanyCode;
+  
+  @UI.identification: [ {
+    position: 80
+  } ]
+  @UI.lineItem: [ {
+    position: 20
+  } ]
+  @UI.selectionField: [ {
+    position: 30
+  } ]
+  @Consumption.valueHelpDefinition: [
+    { entity: {
+      name:    'ZI_AccrualObjectTypeVH',
+      element: 'AccrualEngineAccrualObjectType' }
+    }
+  ]
+  AccrualEngineAccrualObjectType;
+
+  @UI.identification: [ {
+    position: 40
+  } ]
+  @UI.lineItem: [ {
+    position: 30
+  } ]
+  @UI.selectionField: [ {
+    position: 40
+  } ]
+  AccrualObject;
+
+  @UI.identification: [ {
+    position: 50
+  } ]
+  @UI.lineItem: [ {
+    position: 40
+  } ]
+  @UI.selectionField: [ {
+    position: 50
+  } ]
+  AccrualSubobject;
+
+  @UI.identification: [ {
+    position: 60
+  } ]
+  @UI.lineItem: [ {
+    position: 60
+  } ]
+  @UI.selectionField: [ {
+    position: 60
+  } ]
+  AccrualItemType;
+
+  @UI.identification: [ {
+    position: 70
+  } ]
+  @UI.lineItem: [ {
+    position: 70
+  } ]
+  @UI.selectionField: [ {
+    position: 70
+  } ]
+  Ledger;
+  
+  @UI.selectionField: [ {
+    position: 80
+  } ]
+  @UI.identification: [ {
+    position: 300
+  } ]
+  @UI.lineItem: [ {
+    position: 2,
+    value: 'AccrualAmountApprovalStatus',
+    criticality: 'AccrAmtApprvlStsCritlty',
+    criticalityRepresentation: #WITHOUT_ICON
+  } ]
+  @Consumption.valueHelpDefinition: [
+    { entity: {
+      name:    'ZI_AprvAccrApprvlStsVH',
+      element: 'ApprovalStatus' }
+    }
+  ]
+  AccrualAmountApprovalStatus;
+
+  @UI.identification: [ {
+    position: 90
+  } ]
+  GLAccount;
+
+  @UI.identification: [ {
+    position: 100
+  } ]
+  AccountAssignmentNumber;
+
+  @UI.identification: [ {
+    position: 110
+  } ]
+  Material;
+
+  @UI.identification: [ {
+    position: 120
+  } ]
+  ProductType;
+
+  @UI.identification: [ {
+    position: 130
+  } ]
+  Supplier;
+
+  @UI.identification: [ {
+    position: 140
+  } ]
+  PurchasingDocumentItemText;
+
+  @UI.identification: [ {
+    position: 150
+  } ]
+  PurchaseOrder;
+
+  @UI.identification: [ {
+    position: 160
+  } ]
+  PurchaseOrderItem;
+
+  @UI.identification: [ {
+    position: 170
+  } ]
+  LedgerGroup;
+
+  @UI.identification: [ {
+    position: 180
+  } ]
+  @UI.lineItem: [ {
+    position: 180
+  } ]
+  @UI.selectionField: [ {
+    position: 180
+  } ]
+  @Consumption.valueHelpDefinition: [{
+    entity:  { name:    'ZI_AprvAccrCalcMethVH', element: 'AccrualCalculationMethod' },
+    additionalBinding: [{ localElement: 'AccrualEngineAccrualObjectType', element: 'AccrualEngineAccrualObjectType' }]
+  }]
+  AccrualMethod;
+  
+  
+  @UI.identification: [ {
+    position: 185
+  } ]
+  @UI.lineItem: [ {
+    position: 185
+  } ]
+  AccrualItemIsObsolete;
+
+  @UI.identification: [ {
+    position: 190
+  } ]
+  @UI.lineItem: [ {
+    position: 190
+  } ]
+  @UI.selectionField: [ {
+    position: 190
+  } ]
+  @Consumption.valueHelpDefinition: [
+    { entity: {
+      name:    'I_AccrSubobjLifecycleStatusVH',
+      element: 'AccrSubobjectLifeCycleStatus' }
+    }
+  ]
+  AccrSubobjectLifeCycleStatus;
+
+  @UI.identification: [ {
+    position: 200
+  } ]
+  AccrSubobjPauseDate;
+
+  @UI.identification: [ {
+    position: 210
+  } ]
+  AccrSubobjSuspensionDate;
+
+  @UI.identification: [ {
+    position: 220
+  } ]
+  AccrSubobjPrematureFinishDate;
+
+  @UI.identification: [ {
+    position: 230
+  } ]
+  AccrSubobjHdrStartOfLifeDate;
+
+  @UI.identification: [ {
+    position: 240
+  } ]
+  AccrSubobjHdrEndOfLifeDate;
+
+  @UI.identification: [ {
+    position: 250
+  } ]
+  @Consumption.valueHelpDefinition: [{
+    entity:  { name:    'I_CostCenterVH', element: 'CostCenter' },
+    additionalBinding: [{ localElement: 'CompanyCode', element: 'CompanyCode' }]
+  }]
+  CostCenter;
+
+  @UI.identification: [ {
+    position: 260
+  } ]
+  ProfitCenter;
+
+  @EndUserText.label: 'Sales Order'
+  SalesOrder;
+
+  @EndUserText.label: 'Sales Order Item'
+  SalesOrderItem;
+
+  @UI.identification: [ {
+    position: 290
+  } ]
+  DeferralItemType;
+
+  @UI.identification: [ {
+    position: 310
+  } ]
+  AccrualPostingApprovalType;
+
+  @UI.identification: [ {
+    position: 320
+  } ]
+  ApprovedByUser;
+
+  @UI.selectionField: [ {
+    position: 330
+  } ]
+  @UI.identification: [ {
+    position: 330
+  } ]
+  @UI.lineItem: [ {
+    position: 330
+  } ]
+  @Consumption.valueHelpDefinition: [
+    { entity: {
+      name:    'ZI_AprvAccrRevStsVH',
+      element: 'ReviewStatus' }
+    }
+  ]
+  AccrualAmountReviewStatus;
+
+  @UI.identification: [ {
+    position: 340
+  } ]
+  AccrualPostingReviewType;
+
+  @UI.identification: [ {
+    position: 350
+  } ]
+  ReviewedByUser;
+
+  @UI.identification: [ {
+    position: 360
+  } ]
+  ProposedAccrAmtAdjmtReason;
+
+  @UI.identification: [ {
+    position: 370
+  } ]
+  ReviewComment;
+
+  @UI.identification: [ {
+    position: 380
+  } ]
+  AccrualAmountProposedByUser;
+
+  @UI.identification: [ {
+    position: 390
+  } ]
+  AccrualAmountAdjustedByUser;
+
+  @UI.identification: [ {
+    position: 400
+  } ]
+  TotalAccrAmountInTransCrcy;
+
+  @UI.identification: [ {
+    position: 410
+  } ]
+  TotalAccrAmtInCompanyCodeCrcy;
+
+  @UI.identification: [ {
+    position: 420
+  } ]
+  TotalAccrAmountInGlobalCrcy;
+
+  @UI.identification: [ {
+    position: 430
+  } ]
+  PostedPeriodAmtInTransCrcy;
+
+  @UI.identification: [ {
+    position: 440
+  } ]
+  PostedPeriodAmtInCoCodeCrcy;
+
+  @UI.identification: [ {
+    position: 450
+  } ]
+  PostedPeriodAmtInGlobalCrcy;
+
+  @UI.identification: [ {
+    position: 460
+  } ]
+  AccrualAmtInTransCrcy;
+
+  @UI.identification: [ {
+    position: 470
+  } ]
+  AccrualAmtInCCCrcy;
+
+  @UI.identification: [ {
+    position: 480
+  } ]
+  AccrualAmtInGlobalCrcy;
+
+  @UI.identification: [ {
+    position: 490
+  } ]
+  PostedCurPeriodAmtInTransCrcy;
+
+  @UI.identification: [ {
+    position: 500
+  } ]
+  PostedCurPeriodAmtInCoCodeCrcy;
+
+  @UI.identification: [ {
+    position: 510
+  } ]
+  PostedCurPeriodAmtInGlobalCrcy;
+
+  @UI.identification: [ {
+    position: 520
+  } ]
+  ProposedAccrAmtInTransCrcy;
+
+  @UI.identification: [ {
+    position: 530
+  } ]
+  ProposedAccrAmtInCoCodeCrcy;
+
+  @UI.identification: [ {
+    position: 540
+  } ]
+  ProposedAccrAmtInGlobalCrcy;
+
+  @UI.identification: [ {
+    position: 550
+  } ]
+  ActualCostInTransCrcy;
+
+  @UI.identification: [ {
+    position: 560
+  } ]
+  ActualCostAmtInCCCrcy;
+
+  @UI.identification: [ {
+    position: 570
+  } ]
+  ActualCostInGlobalCrcy;
+
+  @UI.identification: [ {
+    position: 580
+  } ]
+  PlannedCostInTransCrcy;
+
+  @UI.identification: [ {
+    position: 590
+  } ]
+  PlndCostInCoCodeCrcy;
+
+  @UI.identification: [ {
+    position: 600
+  } ]
+  PlannedCostInGlobalCrcy;
+
+  @UI.identification: [ {
+    position: 610
+  } ]
+  RecognizedCostInTransCrcy;
+
+  @UI.identification: [ {
+    position: 620
+  } ]
+  RecognizedCostInCoCodeCrcy;
+
+  @UI.identification: [ {
+    position: 630
+  } ]
+  RecognizedCostInGlobalCrcy;
+
+  @UI.identification: [ {
+    position: 640
+  } ]
+  DeferredCostInTransCrcy;
+
+  @UI.identification: [ {
+    position: 650
+  } ]
+  DeferredCostInCoCodeCrcy;
+  
+  @UI.identification: [ {
+    position: 660
+  } ]
+  DeferredCostInGlobalCrcy;
+
+  @UI.identification: [ {
+    position: 670
+  } ]
+  AdjustedCostInTransCrcy;
+
+  @UI.identification: [ {
+    position: 680
+  } ]
+  AdjustedCostInCoCodeCrcy;
+
+  @UI.identification: [ {
+    position: 690
+  } ]
+  AdjustedCostInGlobalCrcy;
+}

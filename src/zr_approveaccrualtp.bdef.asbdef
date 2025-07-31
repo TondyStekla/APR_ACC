@@ -1,0 +1,70 @@
+/*unmanaged implementation in class zbp_r_approveaccrualtp unique;
+strict ( 2 );
+//with draft;
+
+define behavior for ZR_ApproveAccrualTP alias PeriodicAccrual
+//persistent table acesobj_item_per
+//draft table ZAPRVACCR_D
+//with unmanaged save
+lock master
+//total etag LastChangeDateTime
+authorization master ( instance )
+//etag master AccrSubobjLastChangeDateTime
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) AccrualEngineAccrualObjectType, AccrualObjectLogicalSystem, CompanyCode, AccrualObject, AccrualSubobject, AccrualItemType, Ledger, AccrualPeriodEndDate;
+
+  //draft action Edit;
+  //draft action Activate;
+  //draft action Discard;
+  //draft action Resume;
+  //draft determine action Prepare;
+
+  action ( features : instance ) ApprovePeriodicAccrual result [1] $self;
+  action ( features : instance ) RejectPeriodicAccrual result [1] $self;
+}*/
+
+unmanaged implementation in class zbp_r_approveaccrualtp unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZR_ApproveAccrualTP alias PeriodicAccrual
+draft table zaprvaccr_d
+lock master
+total etag AccrualAmountAdjustmentTime
+authorization master ( instance )
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  // All fields except: ReviewComment, ProposedAccrAmtAdjmtReason and AccrualAmtInTransCrcy
+  field ( readonly ) AccountAssignmentNumber, AccrAmtApprvlStsCritlty, AccrPeriodAmtCalculationMethod, AccrSubobjHdrEndOfLifeDate, AccrSubobjHdrStartOfLifeDate,
+  AccrSubobjPauseDate, AccrSubobjPrematureFinishDate, AccrSubobjSuspensionDate, AccrSubobjectLifeCycleStatus, AccrualAmountAdjustedByUser,
+  AccrualAmountAdjustmentDate, AccrualAmountAdjustmentTime, AccrualAmountApprovalDate, AccrualAmountApprovalStatus, AccrualAmountApprovalTime, AccrualAmountProposalDate,
+  AccrualAmountProposalTime, AccrualAmountProposedByUser, AccrualAmountReviewStatus, AccrualAmtInCCCrcy, AccrualAmtInGlobalCrcy, /*AccrualAmtInTransCrcy,*/
+  AccrualEngineAccrualObjectType, AccrualItemIsObsolete, AccrualItemType, AccrualMethod, AccrualObject, AccrualObjectLogicalSystem, AccrualPeriodEndDate,
+  AccrualPostingApprovalType, AccrualPostingReviewType, AccrualSubobject, ActualCostInTransCrcy, ActualCostAmtInCCCrcy, ActualCostInGlobalCrcy, AdjustedCostInTransCrcy,
+  AdjustedCostInCoCodeCrcy, AdjustedCostInGlobalCrcy, AmountReviewDate, AmountReviewTime, ApprovedByUser, CompanyCode, CompanyCodeCurrency, CostCenter,
+  CurPerdPostdAccrAmtInTransCrcy, DeferralItemType, DeferredCostInCoCodeCrcy, DeferredCostInGlobalCrcy, DeferredCostInTransCrcy, GLAccount, GlobalCurrency,
+  Ledger, LedgerGroup, Material, PlannedCostInGlobalCrcy, PlannedCostInTransCrcy, PlndCostInCoCodeCrcy, PostedCurPeriodAmtInCoCodeCrcy, PostedCurPeriodAmtInGlobalCrcy,
+  PostedCurPeriodAmtInTransCrcy, PostedPeriodAmtInCoCodeCrcy, PostedPeriodAmtInGlobalCrcy, PostedPeriodAmtInTransCrcy, ProductType, ProfitCenter, /*ProposedAccrAmtAdjmtReason,*/
+  ProposedAccrAmtInCoCodeCrcy, ProposedAccrAmtInGlobalCrcy, ProposedAccrAmtInTransCrcy, ProposedAccrAmtIsExisting, PurchaseOrder, PurchaseOrderItem, PurchasingDocumentItemText,
+  RecognizedCostInCoCodeCrcy, RecognizedCostInGlobalCrcy, RecognizedCostInTransCrcy, /*ReviewComment,*/ ReviewedByUser, SalesOrder, SalesOrderItem, Supplier,
+  TotalAccrAmountInGlobalCrcy, TotalAccrAmountInTransCrcy, TotalAccrAmtInCompanyCodeCrcy;//, TransactionCurrency;
+
+  draft action Edit;
+  draft action Activate optimized with additional implementation;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  //action ( features : instance ) ApprovePeriodicAccrual result [1] $self;
+  //action ( features : instance ) RejectPeriodicAccrual result [1] $self;
+
+  action ( features : instance ) ApprovePeriodicAccrual result [1..*] Z_A_ACTION_RESULT_BOOLEAN;
+  action ( features : instance ) RejectPeriodicAccrual result [1..*] Z_A_ACTION_RESULT_BOOLEAN;
+
+}

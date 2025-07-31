@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SUSH" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <HEAD>
+    <NAME>D091E4ED2ED5B9D0219F82BA826EC5</NAME>
+    <TYPE>HT</TYPE>
+    <DISPLAY_NAME>R3TR G4BA ZUI_APPROVEACCRUAL</DISPLAY_NAME>
+   </HEAD>
+   <USOBX>
+    <USOBX>
+     <NAME>D091E4ED2ED5B9D0219F82BA826EC5</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>F_ACES_DST</OBJECT>
+    </USOBX>
+    <USOBX>
+     <NAME>D091E4ED2ED5B9D0219F82BA826EC5</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>F_ACES_PER</OBJECT>
+    </USOBX>
+   </USOBX>
+  </asx:values>
+ </asx:abap>
+</abapGit>
